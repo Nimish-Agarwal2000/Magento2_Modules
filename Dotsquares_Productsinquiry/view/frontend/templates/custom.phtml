@@ -1,0 +1,111 @@
+<?php
+$helper = $this->helper('Dotsquares\Productsinquiry\Helper\Data');
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$product = $objectManager->get('Magento\Catalog\Block\Product\View');
+if($product->getProduct()->getEnquiry()){
+  ?>
+  
+  <form data-mage-init='{"validation": {}}' class="review-form" action="<?php echo $block->getPathUrl() ?>" id="my-form"
+    method="post" autocomplete="on">
+    <fieldset class="fieldset">
+    <div class="field name required">
+      <label class="label" for="field-1"><span><?php echo __('Name');?></span></label>
+      <input type="text" class="form-control" data-validate='{"required":true}' maxlength="20" id="field-1"
+        value="<?php echo $customerSession->getCustomer()->getName();?>" placeholder="<?php echo __('Enter Name')?>" name="c_name">
+
+    </div>
+    <div class="field name required">
+      <label class="label" for="field-2"><span><?php echo __('Email');?></span></label>
+      <input type="email" data-validate="{required:true, 'validate-email':true}" class="form-control" id="field-2"
+        value="<?php echo $customerSession->getCustomer()->getEmail();?>"
+        placeholder="<?php echo __('Enter email')?>" name="email">
+    </div>
+    <div class="field name required">
+      <label class="label" for="field-3"><span><?php echo __('Telephone');?></span></label>
+      
+      <input type="number" data-validate='{"required":true}' class="form-control" id="field-3"
+        placeholder="<?php echo __('Enter Telephone')?>" pattern="\d{10}" maxlength="10" minlength="10" name="telephone">
+    </div>
+
+    <input type="hidden" data-validate='{"required":true}' value="<?php echo $product->getProduct()->getSku(); ?>"
+      readonly class="form-control" id="field-52" name="sku">
+
+      <input type="hidden" data-validate='{"required":true}' value="<?php echo $product->getProduct()->getId(); ?>"
+      readonly class="form-control" id="field-53" name="product_id">
+
+    <input type="hidden" data-validate='{"required":true}' value="<?php echo $product->getProduct()->getName();?>"
+      readonly class="form-control" id="field-54" name="product_name">
+
+    <input type="hidden" data-validate='{"required":true}'
+      value="<?php echo $product->getProduct()->getProductUrl();?>" class="form-control" id="field-55"
+      placeholder="<?php echo __('Enter Subject')?>" name="producturl">
+
+    <div class="field name required">
+      <label class="label" for="field-4"><span><?php echo __('Subject');?></span></label>
+      
+      <input type="text" data-validate='{"required":true}' maxlength="50" class="form-control" id="field-4"
+        placeholder="<?php echo __('Enter Subject')?>" name="subject">
+    </div>
+    <div class="field name required">
+      <label class="label" for="field-5"><span><?php echo __('Message');?></span></label>
+     
+      <textarea class="form-control" data-validate='{"required":true}' maxlength="500" rows="5" id="field-5"
+        name="massage"></textarea>
+    </div>
+    <?php if($helper->isreCptchaEnable()): ?>
+    <div class="form-group required">
+      <div class="g-recaptcha required" id="recaptcha" data-sitekey="<?php echo $helper->getreCptchaPrivateKey(); ?>">
+      </div>
+      <div style="display:none" id="error-msg">
+        <span>
+          <?php echo __('This is a required field.') ?>
+        </span>
+      </div>
+    </div>
+  </fieldset>
+     <?php endif; ?>
+    <button style="background-color:#006bb4;color:white;" type="submit" class="btn btn-default">
+      <?php echo __('Submit')?>
+    </button>
+  </form>
+  <script type="text/x-magento-init">
+    {
+        "#my-form": {
+            "validation": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+        	 function validateRecaptcha() {
+          
+            if (grecaptcha.getResponse() != "") {
+                document.getElementById("captcha-required").style.display = "none";
+            	return true;
+            } else {
+                document.getElementById("captcha-required").style.display = "block";
+                return false;
+            }
+          
+            return true;
+          
+        }
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js" type="text/javascript" xml="space">
+
+</script>
+<script>
+    function checkCaptcha() {
+        if ((jQuery('#g-recaptcha-response').val()) === '') {
+            jQuery('#error-msg').css('display', 'block');
+            jQuery('#error-msg').css('color', '#df280a');
+            jQuery('#error-msg').css('font-size', 13);
+            return false;
+        }
+        else {
+            jQuery('#error-msg').css('display', 'none');
+        }
+    }
+</script>
+<?php } ?>

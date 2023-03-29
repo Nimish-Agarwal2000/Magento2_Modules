@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <products>
+            <general>
+                
+                <display_text>Hello World</display_text>
+                <!-- <display_text>Hello World</display_text> -->
+                <send_email_to>abc@xyz.com</send_email_to>
+                <tab_label>Inquiry</tab_label>
+                <Google_reCaptcha>1</Google_reCaptcha>
+               
+            </general>
+        </products>
+    </default>
+</config>

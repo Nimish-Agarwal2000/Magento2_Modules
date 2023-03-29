@@ -1,0 +1,23 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Dotsquares\Productsinquiry\Api\Data\GridInterface" type="Dotsquares\Productsinquiry\Model\Post" />
+    <virtualType name="Dotsquares\Productsinquiry\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dotsquares_products_inq</argument>
+            <argument name="resourceModel" xsi:type="string">Dotsquares\Productsinquiry\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dotsquares_productsinquiry_post_listing_data_source" xsi:type="string">Dotsquares\Productsinquiry\Model\ResourceModel\Post\Grid\Collection</item>
+            </argument>
+            <!-- <argument name="filterPool" xsi:type="object" shared="false">MDUiExampleBlogFilterPool</argument> -->
+        </arguments>
+    </type>
+    
+
+    
+    
+</config>
+
+

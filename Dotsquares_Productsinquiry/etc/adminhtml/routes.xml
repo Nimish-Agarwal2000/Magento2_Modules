@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dotsquares_Product_inquiry Module Registration
+ *
+ * @category    Dotsquares
+ * @package     Dotsquares_Product_inquiry
+ * @author      Dotsquares Software Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="dotsquares_productsinquiry" frontName="dotsquares_productsinquiry">
+            <module name="Dotsquares_Productsinquiry" />
+        </route>
+    </router>
+</config>

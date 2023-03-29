@@ -1,0 +1,22 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dotsquares_products_inq" resource="default" engine="innodb" comment="Dotsquares Products Inq">
+        <column xsi:type="int" name="post_id" unsigned="true" nullable="false" identity="true" comment="Enquiry_Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="post_id"/>
+		</constraint>
+        <column xsi:type="text" name="name" nullable="false"  comment="Customer Name"/>
+        <column xsi:type="text" name="email" nullable="false" comment="Customer Name"/>
+        <column xsi:type="text" name="telephone" nullable="true" comment="Telephone No"/>
+        <column xsi:type="text" name="subject" nullable="false"  comment="Subject"/>
+        
+        <column xsi:type="text" name="sku" nullable="true" comment="SKU"/>
+        <column xsi:type="text" name="product_id" nullable="true" comment="Product Id"/>
+        <column xsi:type="text" name="product_name" nullable="true" comment="Product Name"/>
+        <column xsi:type="text" name="massage" nullable="true" comment="Message"/>
+        <column xsi:type="text" name="producturl" nullable="true"  comment="Product Url"/>
+        <column xsi:type="timestamp" name="added_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Date of Post"/>
+        
+    </table>
+</schema>

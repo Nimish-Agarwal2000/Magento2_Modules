@@ -1,0 +1,67 @@
+<!--@subject Sending email from my custom module @-->
+ 
+{{template config_path="design/email/header_template"}}
+
+<table style="border-collapse: collapse;border: 1px solid black;">
+     
+     <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">
+            Name 
+        </td>
+        <td style="border: 1px solid black;">
+         {{var name}}
+        </td>
+     </tr>
+         
+    <tr style="border: 1px solid black;">
+         <td style="border: 1px solid black;">
+            Email  
+         </td>
+         <td style="border: 1px solid black;">
+            {{var email}}
+         </td>
+    </tr>
+   
+    <tr style="border: 1px solid black;">
+         <td style="border: 1px solid black;">
+            Phone 
+         </td>
+         <td style="border: 1px solid black;">
+            {{var telephone}}
+         </td>
+    </tr>
+    <tr style="border: 1px solid black;">
+         <td style="border: 1px solid black;">
+            Subject 
+         </td>
+         <td style="border: 1px solid black;">
+            {{var subject}}
+         </td>
+    </tr>
+    <tr style="border: 1px solid black;">
+         <td style="border: 1px solid black;">
+             SKU 
+         </td>
+         <td style="border: 1px solid black;">
+            {{var sku}}
+         </td>
+    </tr>
+    <tr style="border: 1px solid black;">
+         <td style="border: 1px solid black;">
+            Product 
+         </td>
+         <td style="border: 1px solid black;">
+            {{var producturl}}
+         </td>
+    </tr>
+    <tr style="border: 1px solid black;">
+         <td style="border: 1px solid black;">
+            Massage 
+         </td>
+         <td style="border: 1px solid black;">
+            {{var massage}}
+         </td>
+    </tr>
+ </table>
+ 
+{{template config_path="design/email/footer_template"}}

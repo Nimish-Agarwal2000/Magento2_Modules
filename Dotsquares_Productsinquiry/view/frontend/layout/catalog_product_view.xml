@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+<!-- for popup inqury form -->
+   <referenceContainer name="product.info.extrahint">
+        <block class="Dotsquares\Productsinquiry\Block\Enquiry" name="product.info.post.requirements"
+          template="Dotsquares_Productsinquiry::post_requirements.phtml"
+           before="-" cacheable="false"/>
+           
+    </referenceContainer>
+    <!-- for tab in inquriy -->
+    <referenceBlock name="product.info.details">
+
+          <block class="Dotsquares\Productsinquiry\Block\Enquiry" ifconfig="products/general/select" after="-" name="example.tab" template="Dotsquares_Productsinquiry::custom.phtml" group="detailed_info">
+            
+              <arguments>
+                  <argument name="sort_order" xsi:type="string">990</argument>
+                  <argument name="title" xsi:type="helper" helper="Dotsquares\Productsinquiry\Helper\Data::getButtonLavel" />
+              </arguments>
+              <container name="form.additional.info">
+              <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
+                   name="recaptcha"
+                   template="Dotsquares_Productsinquiry::recaptcha.phtml"
+                   ifconfig="products/general/Google_reCaptcha">
+                <arguments>
+                    <argument name="recaptcha_for" xsi:type="string">user_forgot_password</argument>
+                </arguments>
+                
+            </block>
+          </container>
+          </block>
+      </referenceBlock>
+      
+</body>
+</page>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Bhanu_Grid Menu
+ *
+ * @category    Bhanu
+ * @package     Bhanu_Grid
+ * @author      Bhanu Software Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dotsquares_Productsinquiry::manager" title="Dotsquares" module="Dotsquares_Productsinquiry" sortOrder="10" dependsOnConfig="products/general/enable" resource="Dotsquares_Productsinquiry::manager"/>
+        <add id="Dotsquares_Productsinquiry::add_row" title="Product Inquiry" module="Dotsquares_Productsinquiry" sortOrder="1" parent="Dotsquares_Productsinquiry::manager" action="dotsquares_productsinquiry/post/index" dependsOnConfig="products/general/enable" resource="Dotsquares_Productsinquiry::add_row"/>
+    </menu>
+</config>
