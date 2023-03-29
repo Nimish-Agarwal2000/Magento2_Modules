@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+		<!-- <css src="Dotsquares_Rmamarketplace::css/backend.css"/> -->
+        <css src="Dotsquares_Favouriteseller::css/backend.css"/>
+	</head>
+    <body>
+   
+     <referenceContainer name="product.info.main"> 
+        <block class="Dotsquares\Favouriteseller\Block\Sellergroup\Addfevseller" name="fev.seller.add"
+          template="Dotsquares_Favouriteseller::seller/addfevseller.phtml" ifconfig="marketplace/favseller/fevseller_approval" after="-" cacheable="false"/>
+    </referenceContainer>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Dotsquares\Favouriteseller\Block\Customergroup\Customer" ifconfig="marketplace/favseller/fevseller_approval" name="customer-account-favouriteseller-link" after="-">
+                <arguments>
+                    <argument name="label" xsi:type="string">My Favourite Seller</argument>
+                    <argument name="path" xsi:type="string">favouriteseller/customer/allcustomer</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Dotsquares\Favouriteseller\Block\Sellergroup\Seller" ifconfig="marketplace/favseller/fevseller_approval" name="seller-accoun" template="Dotsquares_Favouriteseller::account/followerbutton.phtml" cacheable="false">
+               
+            </block>
+        </referenceBlock>
+         <referenceBlock name="seller_content">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="helper" helper="Dotsquares\Favouriteseller\Helper\Data::getTemplate"></argument>
+            </action>
+        </referenceBlock>
+       
+         <!-- <move element="customer-account-favouriteseller-link" destination="sidebar.main" before="-"/>
+        <move element="seller-accoun" destination="sidebar.main" before="-"/> -->
+    </body>
+</page>

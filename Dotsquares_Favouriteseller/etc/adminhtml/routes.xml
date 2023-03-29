@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+
+ *
+ * @category    Dotsquares
+ * @package     Dotsquares_Favouriteseller
+ * @version     1.0.0
+
+ *
+ */
+! -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+  <router id="admin">
+    <route id="favouriteseller" frontName="favouriteseller">
+      <module name="Dotsquares_Favouriteseller" />
+    </route>
+  </router>
+</config>

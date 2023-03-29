@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <update handle="customer_account" />
+	<head>
+		<css src="Dotsquares_Favouriteseller::css/backend.css"/>
+	</head>
+    <body>     
+        <referenceContainer name="content">
+             <block class="Dotsquares\Favouriteseller\Block\Sellergroup\Email" ifconfig="marketplace/favseller/fevseller_approval" name="seller_mail" template="Dotsquares_Favouriteseller::seller/email.phtml" />
+        </referenceContainer>
+    </body>
+</page>

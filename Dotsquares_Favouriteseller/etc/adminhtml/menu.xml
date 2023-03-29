@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+
+ *
+ * @category    Dotsquares
+ * @package     Dotsquares_favouriteseller
+ * @version     1.0.0
+
+ *
+ */
+! -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Dotsquares_Favouriteseller::manage_fevsellers" dependsOnConfig="marketplace/favseller/fevseller_approval" sortOrder="22" title="Manage FevSellers" module="Dotsquares_Favouriteseller" action="adminhtml/system_config/edit/section/transactional_email" parent="Dotsquares_Marketplace::main_menu" resource="Dotsquares_Favouriteseller::manage_fevsellers" />
+    </menu>
+</config>

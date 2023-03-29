@@ -1,0 +1,33 @@
+{{template config_path="design/email/header_template"}}
+
+<div>
+    <pre>
+        hello {{var customer_name}} 
+               {{var seller_name}} added a new product
+    </pre>
+    <table style="border-collapse: collapse;border: 1px solid black;">
+     
+      
+       <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">
+                SKU 
+            </td>
+            <td style="border: 1px solid black;">
+               {{var product_sku}}
+            </td>
+       </tr>
+       <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">
+               Product 
+            </td>
+            <td style="border: 1px solid black;">
+               {{var product_url}}
+            </td>
+       </tr>
+       
+    </table>
+</div>
+        
+    
+ 
+{{template config_path="design/email/footer_template"}}

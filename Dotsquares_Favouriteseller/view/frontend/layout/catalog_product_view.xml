@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+<body>
+<!-- for add fev -->
+   <referenceContainer name="product.info.extrahint">
+        <block class="Dotsquares\Favouriteseller\Block\Sellergroup\Addfevseller" name="product.info.post.requirements" ifconfig="marketplace/favseller/fevseller_approval"
+          template="Dotsquares_Favouriteseller::addfevseller.phtml"
+           before="-" after="-" cacheable="false"/>
+    </referenceContainer>
+</body>
+</page>

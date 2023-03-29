@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+     <template id="transactional_email_genera_send_to_followers" label="Email to followers by seller" file="sellertofollower.html" type="html" module="Dotsquares_Favouriteseller" area="frontend"/>
+     <template id="transactional_email_genera_followed_mail_to_costomer" label="Email to customer when customer click on follow" file="customertocustomer.html" type="html" module="Dotsquares_Favouriteseller" area="frontend"/>
+     <template id="transactional_email_genera_followed_mail_to_seller" label="Email to seller when customer click on follow" file="customertoseller.html" type="html" module="Dotsquares_Favouriteseller" area="frontend"/>
+     <template id="transactional_email_genera_product_notification" label="Notify Followers Regarding Product" file="sellertocustomeraddnew.html" type="html" module="Dotsquares_Favouriteseller" area="frontend"/>
+</config>

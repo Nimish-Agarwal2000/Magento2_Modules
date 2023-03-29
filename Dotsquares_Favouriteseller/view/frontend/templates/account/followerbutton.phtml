@@ -1,0 +1,7 @@
+<?php
+$sellerGroupId = $customerId = $customerGroupId = $status = '';
+$urlInterface = \Magento\Framework\App\ObjectManager::getInstance ()->get ( 'Magento\Framework\UrlInterface' );
+$currentUrl = $urlInterface->getCurrentUrl ();
+?>
+<li  class="nav item <?php if($currentUrl==$block->getUrl('favouriteseller/seller/followers')){?>current<?php }?>"><a
+    href="<?php echo $block->getUrl('favouriteseller/seller/followers') ?>"><?php echo __('My Followers'); ?></a></li>

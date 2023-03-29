@@ -1,0 +1,16 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Dotsquares\Favouriteseller\Api\Data\DetailsInterface" type="Dotsquares\Favouriteseller\Model\Blog" />
+   <virtualType name="ProductGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collectionDetail" xsi:type="object" shared="false">Dotsquares\Favouriteseller\Model\ResourceModel\Blog\Collection</argument>      
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="favouriteseller_customer_fevseller_data_source" xsi:type="string">Dotsquares\Favouriteseller\Model\ResourceModel\Blog\Grid\Collection</item>
+                <item name="favouriteseller_customer_fevseller_data_source" xsi:type="string">Dotsquares\Favouriteseller\Model\ResourceModel\Blog\Grid\Collection</item>
+            </argument>			
+        </arguments>
+    </type>
+</config>

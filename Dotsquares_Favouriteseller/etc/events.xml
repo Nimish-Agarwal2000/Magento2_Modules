@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+
+ *
+ * @category    Dotsquares
+ * @package     Dotsquares_Favouriteseller
+ * @version     1.0.0
+
+ *
+ */
+! -->
+ <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_after">
+         <observer name="cataloginventoryupdate" instance="Dotsquares\Favouriteseller\Observer\Cataloginventoryupdate" />
+    </event>
+ </config>
