@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+    <tab id="dotsquares" translate="label" sortOrder="1">
+      <label>Marketp</label>
+    </tab>
+    <section id="marketplace" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Settings</label>
+      <tab>dotsquares</tab>
+      <resource>Dotsquares_Marketplace::system_config</resource>
+    <group id="seller_badge" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+        <label>Seller Badge</label>
+      <field id="enable_badge" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0"
+                showInStore="0">
+        <label>Enable Seller badges</label>
+       <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+           </field>
+       </group>
+    </section>
+  </system>
+</config>

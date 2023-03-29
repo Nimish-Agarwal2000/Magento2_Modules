@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="marketplace_sellerbadge" resource="default" engine="innodb" comment="badges">
+		<column xsi:type="int" name="badge_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Badge Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+		<column name="badge_id"/>
+		</constraint>
+		<column name="thumbnail" nullable="true" xsi:type="text" comment="Thumbnail"/>
+		<column xsi:type="varchar" name="path" nullable="false"  comment="Image Path"/>
+		<column name="badge_name" nullable="true" xsi:type="varchar" comment="Badge_Name" length="255"/>
+		<column name="badge_descriptions" nullable="true" xsi:type="varchar" comment="Badge_Description" length="255"/>
+		<column name="ranks" nullable="true" xsi:type="varchar" comment="Rank" length="255"/>
+		<column xsi:type="timestamp" name="create_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Date of Follow"/>
+		<column name="seller_status" nullable="true" xsi:type="varchar" comment="Status" length="255"/>	
+	</table> 
+    <table name="marketplace_seller" resource="default" >
+        <column xsi:type="varchar" name="assign_badge" nullable="false" length="100" comment="Assign Badge"/>
+    </table>
+</schema>

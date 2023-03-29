@@ -1,0 +1,33 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Dotsquares\Sellerbadge\Api\Data\GridInterface" type="Dotsquares\Sellerbadge\Model\Badge" />
+    <virtualType name="Dotsquares\Sellerbadge\Model\ResourceModel\Badge\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_sellerbadge</argument>
+            <argument name="resourceModel" xsi:type="string">Dotsquares\Sellerbadge\Model\ResourceModel\Badge</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dotsquares_badges_data_source" xsi:type="string">Dotsquares\Sellerbadge\Model\ResourceModel\Badge\Grid\Collection</item>
+            </argument> 
+            <argument name="filterPool" xsi:type="object" shared="false">MDUiExampleBlogFilterPool</argument>
+         </arguments>
+    </type> 
+    <virtualType name="Dotsquares\Marketplace\Model\ResourceModel\Seller\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_seller</argument>
+            <argument name="resourceModel" xsi:type="string">Dotsquares\Marketplace\Model\ResourceModel\Seller</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="seller_data_source" xsi:type="string">Dotsquares\Marketplace\Model\ResourceModel\Seller\Grid\Collection</item>
+            </argument> 
+            <argument name="filterPool" xsi:type="object" shared="false">MDUiExampleBlogFilterPool</argument>
+         </arguments>
+    </type> 
+       
+</config>
+

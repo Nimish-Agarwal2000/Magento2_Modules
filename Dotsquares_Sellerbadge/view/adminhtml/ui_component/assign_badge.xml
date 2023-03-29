@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                assign_badge.seller_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>dotsquares_sellerbadge_blog_columns</spinner>
+        <deps>
+            <dep>assign_badge.seller_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="seller_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">customer_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render" />
+        </settings>
+        <aclResource>Dotsquares_Sellerbadge::blog</aclResource>
+        <dataProvider name="seller_data_source"
+            class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+            <settings>
+                <requestFieldName>customer_id</requestFieldName>
+                <primaryFieldName>customer_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks" />
+        <columnsControls name="columns_controls" />
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <action name="assign_badge">
+                <settings>
+                    <type>assign_badge</type>
+                    <label translate="true">Assign Badge</label>
+                    <actions class="Dotsquares\Sellerbadge\Ui\Component\MassAction\Status\BadgesAssignOption"/>
+                </settings>
+            </action>
+            <action name="remove_badge">
+                <settings>
+                    <type>remove_badge</type>
+                    <label translate="true">Remove Badge</label>
+                    <actions class="Dotsquares\Sellerbadge\Ui\Component\MassAction\Status\BadgesRemoveOption"/>
+                </settings>
+            </action>
+        </massaction>
+        
+        
+        <filters name="listing_filters" />
+        <paging name="listing_paging" />
+    </listingToolbar>
+    <columns name="dotsquares_sellerbadge_blog_columns">
+        <settings>
+            <editorConfig>
+                <param name="selectProvider" xsi:type="string">
+                assign_badge.assign_badge.dotsquares_sellerbadge_blog_columns.ids
+                </param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="indexField" xsi:type="string">customer_id</param>
+                <param name="clientConfig" xsi:type="array">
+                <item name="saveUrl" xsi:type="url" path="dotsquares_sellerbadge/blog/inlineEdit" />
+                <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                <item name="provider" xsi:type="string">
+                    assign_badge.assign_badge.dotsquares_sellerbadge_blog_columns_editor
+                </item>
+                <item name="target" xsi:type="string">startEdit</item>
+                <item name="params" xsi:type="array">
+                    <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                    <item name="1" xsi:type="boolean">true</item>
+                </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>customer_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="customer_id" sortOrder="1">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Seller ID</label>
+            </settings>
+        </column>
+        <column name="email" sortOrder="2">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Seller Email</label>
+                <editor>
+                    <editorType>readonly</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+
+<column name="assign_badge" class="Dotsquares\Sellerbadge\Ui\Component\Listing\Grid\Column\ThumbnailBadge">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+            <item name="altField" xsi:type="string">assign_badge</item>
+            <item name="has_preview" xsi:type="string">0</item>
+            <item name="sortable" xsi:type="boolean">false</item>
+            <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+            <item name="label" xsi:type="string" translate="true">Images</item>
+            <item name="sortOrder" xsi:type="number">1</item>
+        </item>
+    </argument>
+</column>
+        <actionsColumn name="actions" class="Dotsquares\Sellerbadge\Ui\Component\Listing\Grid\Column\GetName">
+            <settings>
+                <label translate="true">Seller Name</label>
+            </settings>
+           
+				
+			
+        </actionsColumn>
+        <column name="status" sortOrder="5">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Seller Status</label>
+                <editor>
+                    <editorType>readonly</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+    </columns>
+</listing>

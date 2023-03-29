@@ -1,0 +1,150 @@
+<?php
+/**
+ * Dotsquares
+ * NOTICE OF LICENSE
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.dotsquares.com/LICENSE.txt
+ * ==============================================================
+ * MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Dotsquares does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Dotsquares does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category Dotsquares
+ * @package Dotsquares_Marketplace
+ * @version 3.5.2
+ * @author Dotsquares Team <developers@dotsquares.com>
+ * @copyright Copyright (c) 2022 Dotsquares. (http://www.dotsquares.com)
+ * @license http://www.dotsquares.com/LICENSE.txt
+ */
+?>
+<?php
+$objectModelManager = \Magento\Framework\App\ObjectManager::getInstance ();
+$sellerId = $block->getRequest ()->getParam ( 'id' );
+$customerOb = $objectModelManager->create('Magento\Customer\Model\Session');
+$customerId = $customerOb->getId();
+$storeManager = $objectModelManager->get('\Magento\Store\Model\StoreManagerInterface');
+$store = $storeManager->getStore();
+$sellerDatas = $objectModelManager->get ( 'Dotsquares\Marketplace\Model\Seller' );
+$sellerDetails = $sellerDatas->load ( $sellerId, 'customer_id' );
+$sellerObj = $objectModelManager->create('Magento\Customer\Model\Customer')->load($sellerId);
+$customerObj = $objectModelManager->create('Magento\Customer\Model\Customer')->load($customerId);
+$logoName = $sellerDetails->getLogoName ();
+$bannerName = $sellerDetails->getBannerName ();
+$badgepath = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB, true).'media/imageUploader/images/';
+$resource = $objectModelManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$tableName = $resource->getTableName('marketplace_seller'); //gives table name
+
+//Select Data from table
+$sql = $connection->select()->from(["tn" => $tableName]);
+$result = $connection->fetchAll($sql);
+$sellerContact = $sellerDetails->getContact ();
+$sellerStoreName = $sellerDetails->getStoreName ();
+$sellerEmail = $sellerObj->getEmail ();
+$sellerName = $sellerObj->getName ();
+$customerEmail = $customerObj->getEmail ();
+$customerName = $customerObj->getName ();
+$sellerDesc = $sellerDetails->getDesc ();
+$sellerFacebookId = $sellerDetails->getFacebookId ();
+$sellerTwitterId = $sellerDetails->getTwitterId ();
+$sellerGoogleId = $sellerDetails->getGoogleId ();
+$sellerLinkedId = $sellerDetails->getLinkedId ();
+$sellerState = $sellerDetails->getState ();
+$sellerCountry = $sellerDetails->getCountry ();
+$url = $block->getUrl("favouriteseller/seller/save");
+$logoImage = $objectModelManager->get ( 'Magento\Store\Model\StoreManagerInterface' )->getStore ()->getBaseUrl ( \Magento\Framework\UrlInterface::URL_TYPE_MEDIA ) . 'Marketplace/Seller/Resized';
+$bannerImage = $objectModelManager->get ( 'Magento\Store\Model\StoreManagerInterface' )->getStore ()->getBaseUrl ( \Magento\Framework\UrlInterface::URL_TYPE_MEDIA ) . 'Marketplace/Sellerbanner/Resized';
+$helpers = $this->helper('Dotsquares\Favouriteseller\Helper\Data');
+?>
+<div class="mp_profiles_container">
+    <div class="seller_store_banner">
+        <p class="mp_profiles_banner">
+         <?php if($bannerName!=""){?>
+           <img src="<?php echo $bannerImage.$bannerName;?>"
+                alt="store banner" class="market_place_store_img_banner">
+           <?php } else{?>
+           <img
+                src="<?php echo $block->getViewFileUrl('Dotsquares_Marketplace::images/no-banner-image.png');?>">
+
+      <?php  }?>
+        </p>
+    </div>
+    <div class="mp_profiles-info-wrapper">
+        <p class="mp_profiles_logo">
+        <?php if($logoName!=""){?>
+           <img src="<?php echo $logoImage.$logoName;?>"
+                alt="store logo" class="market_place_store_img_logo">
+           <?php } else{?>
+           <img
+                src="<?php echo $block->getViewFileUrl('Dotsquares_Marketplace::images/no-store-logo.png');?>">
+
+      <?php  }?>
+       </p>
+        <div class="sellers_store_info">
+            <div class="contact-wrapper">
+                <?php
+                if(!$helpers->isFavouritesellermoduleEnable()){
+                   ?>
+                   <span>
+                    <div style="display: flex;">
+                    <?php foreach($result as $badge)
+                    {
+                        if($badge['customer_id']==$sellerId){
+                            $myArray = explode(',', $badge['assign_badge']); 
+                            $tabName = $resource->getTableName('marketplace_sellerbadge'); 
+                            $sqll = $connection->select()->from(["tn" => $tabName]);
+                            $results = $connection->fetchAll($sqll);
+                            foreach($myArray as $imgname){
+                                foreach($results as $img){
+                                    
+                                    if($img['badge_id'] == $imgname && $img['seller_status']=="Approved"){
+                                        ?>
+                                        <img style="width:80px; height:80px;" src="<?php echo $badgepath.$img['thumbnail']; ?>" alt="badge">
+                                        <?php
+
+                                    }
+                            }
+                        }
+
+                         
+                        }
+                    }
+                        ?>
+                      
+                       
+                </div>
+                 </span>
+                   <?php 
+                 } ?>
+                <span class="contact-number"><a><?php echo $sellerContact;?></a></span>
+                <span class="contact-mail"><a
+                    href="mailto:<?php echo $sellerEmail;?>"><?php echo $sellerEmail;?></a></span>
+            </div>
+            <h2><?php echo ucfirst($sellerStoreName); ?></h2>
+        </div>
+        <div class="social-media-wrapper">
+        <?php if(!empty($sellerLinkedId)){?>
+            <a href="<?php echo $sellerLinkedId?>" target="_blank" title="LinkedIn" class="linked-in">&nbsp;</a> 
+                <?php } if(!empty($sellerFacebookId)){?>
+            <a href="<?php echo $sellerFacebookId?>" target="_blank" title="Facebook" class="facebook">&nbsp;</a> 
+            <?php } if(!empty($sellerTwitterId)){?>
+            <a href="<?php echo $sellerTwitterId?>" target="_blank" title="twitter" class="twitter">&nbsp;</a> 
+            <?php } if(!empty($sellerGoogleId)){?>
+            <a href="<?php echo $sellerGoogleId?>" target="_blank" title="GooglePlus" class="gplus">&nbsp;</a>
+            <?php }?>
+        </div>
+    </div>
+</div>
+<?php if($sellerDesc){?>
+<div class="mp_profiles_desc">
+    <p class="mp_profiles_desc">
+     <?php echo strip_tags($sellerDesc);?></p>
+</div>
+<?php } ?>

@@ -1,0 +1,36 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="Dotsquares\Sellerbadge\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">marketplace_sellerbadge</argument>
+            <argument name="resourceModel" xsi:type="string">Dotsquares\Sellerbadge\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dotsquares_sellerbadge_post_listing_data_source" xsi:type="string">Dotsquares\Sellerbadge\Model\ResourceModel\Post\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+   <type name="Dotsquares\Sellerbadge\Ui\Component\MassAction\Status\BadgesAssignOption">
+    <arguments>
+        <argument name="data" xsi:type="array">
+            <item name="urlPath" xsi:type="string">seller/seller/massBadgeAssign</item>
+            <item name="paramName" xsi:type="string">assign_badge</item>
+            
+        </argument>
+    </arguments>
+</type>
+<type name="Dotsquares\Sellerbadge\Ui\Component\MassAction\Status\BadgesRemoveOption">
+    <arguments>
+        <argument name="data" xsi:type="array">
+            <item name="urlPath" xsi:type="string">seller/seller/massBadgeRemove</item>
+            <item name="paramName" xsi:type="string">remove_badge</item>
+            <item name="confirm" xsi:type="array">
+                <item name="title" xsi:type="string" translatable="true">Remove Badge</item>
+                <item name="message" xsi:type="string" translatable="true">Are you sure to change?</item>
+            </item>
+        </argument>
+    </arguments>
+</type>
+ </config>

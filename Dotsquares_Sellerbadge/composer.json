@@ -1,0 +1,25 @@
+
+{
+    "name": "dotsquares/module-sellerbadge",
+    "description": "Dotsquares Marketplace Extension ",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Dotsquares",
+            "email": "dotsquares@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "~8.1"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Dotsquares\\Sellerbadge\\": ""
+        }
+    }
+}

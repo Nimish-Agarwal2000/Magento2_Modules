@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+  <argument name="data" xsi:type="array">
+    <item name="js_config" xsi:type="array">
+      <item name="provider" xsi:type="string">badges.dotsquares_badges_data_source</item>
+      <item name="deps" xsi:type="string">badges.dotsquares_badges_data_source</item>
+    </item>
+    <item name="spinner" xsi:type="string">dev_grid_category_columns</item>
+    <item name="buttons" xsi:type="array">
+      <item name="add" xsi:type="array">
+        <item name="name" xsi:type="string">add</item>
+        <item name="label" xsi:type="string" translate="true">Add New Brand</item>
+        <item name="class" xsi:type="string">primary</item>
+        <item name="url" xsi:type="string">*/*/add</item>
+      </item>
+    </item>
+  </argument>
+  <dataSource name="dotsquares_badges_data_source">
+    <argument name="dataProvider" xsi:type="configurableObject">
+      <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
+      </argument>
+      <argument name="name" xsi:type="string">dotsquares_badges_data_source</argument>
+      <argument name="primaryFieldName" xsi:type="string">badge_id</argument>
+      <argument name="requestFieldName" xsi:type="string">badge_id</argument>
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="update_url" xsi:type="url" path="mui/index/render" />
+          <item name="storageConfig" xsi:type="array">
+            <item name="indexField" xsi:type="string">badge_id</item>
+          </item>
+        </item>
+      </argument>
+    </argument>
+    <argument name="data" xsi:type="array">
+      <item name="js_config" xsi:type="array">
+        <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+      </item>
+    </argument>
+  </dataSource>
+  <listingToolbar name="listing_top">
+    <bookmark name="bookmarks" />
+    <columnsControls name="columns_controls" />
+    <massaction name="listing_massaction">
+      <argument name="data" xsi:type="array">
+        <item name="data" xsi:type="array">
+          <item name="selectProvider" xsi:type="string">badges.badges.dev_grid_category_columns.ids</item>
+          <item name="displayArea" xsi:type="string">bottom</item>
+          <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+          <item name="indexField" xsi:type="string">badge_id</item>
+        </item>
+      </argument>
+      <action name="delete">
+        <argument name="data" xsi:type="array">
+          <item name="config" xsi:type="array">
+            <item name="type" xsi:type="string">delete</item>
+            <item name="label" xsi:type="string" translate="true">Delete</item>
+            <item name="url" xsi:type="url" path="seller/index/massDelete" />
+            <item name="confirm" xsi:type="array">
+              <item name="title" xsi:type="string" translate="true">Delete items</item>
+              <item name="message" xsi:type="string" translate="true">Are you sure you want to delete selected items?
+              </item>
+            </item>
+          </item>
+        </argument>
+      </action>
+      <action name="enable">
+        <argument name="data" xsi:type="array">
+          <item name="config" xsi:type="array">
+            <item name="type" xsi:type="string">enable</item>
+            <item name="label" xsi:type="string" translate="true">Enable</item>
+            <item name="url" xsi:type="url" path="seller/index/massEnable" />
+            <item name="confirm" xsi:type="array">
+              <item name="title" xsi:type="string" translate="true">Approve items</item>
+              <item name="message" xsi:type="string" translate="true">Are you sure you want to approve selected items?
+              </item>
+            </item>
+          </item>
+        </argument>
+      </action>
+      <action name="disable">
+        <argument name="data" xsi:type="array">
+          <item name="config" xsi:type="array">
+            <item name="type" xsi:type="string">disable</item>
+            <item name="label" xsi:type="string" translate="true">Disable</item>
+            <item name="url" xsi:type="url" path="seller/index/massDisable" />
+            <item name="confirm" xsi:type="array">
+              <item name="title" xsi:type="string" translate="true">Disable items</item>
+              <item name="message" xsi:type="string" translate="true">Are you sure you want to disable selected items?
+              </item>
+            </item>
+          </item>
+        </argument>
+      </action>
+    </massaction>
+    <filterSearch name="fulltext">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="provider" xsi:type="string">badges.dotsquares_badges_data_source</item>
+          <item name="chipsProvider" xsi:type="string">badges.badges.listing_top.listing_filters_chips</item>
+          <item name="storageConfig" xsi:type="array">
+            <item name="provider" xsi:type="string">badges.badges.listing_top.bookmarks</item>
+            <item name="namespace" xsi:type="string">current.search</item>
+          </item>
+        </item>
+      </argument>
+    </filterSearch>
+    <filters name="listing_filters">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="templates" xsi:type="array">
+            <item name="filters" xsi:type="array">
+              <item name="select" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+              </item>
+            </item>
+          </item>
+        </item>
+      </argument>
+    </filters>
+    <paging name="listing_paging" />
+  </listingToolbar>
+  <columns name="dev_grid_category_columns">
+    <selectionsColumn name="ids">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="indexField" xsi:type="string">badge_id</item>
+        </item>
+      </argument>
+    </selectionsColumn>
+    <column name="path" sortOrder="2" component="Magento_Ui/js/grid/columns/thumbnail"
+      class="Dotsquares\Sellerbadge\Ui\Component\Listing\Grid\Column\Thumbnail">
+      <settings>
+        <hasPreview>0</hasPreview>
+        <addField>false</addField>
+        <label translate="true">Thumbnail</label>
+        <sortable>true</sortable>
+      </settings>
+    </column>
+    <column name="badge_name" sortOrder="3">
+      <settings>
+        <filter>text</filter>
+        <label translate="true">Badge Name</label>
+        <editor>
+          <editorType>readonly</editorType>
+          <validation>
+            <rule name="required-entry" xsi:type="boolean">false</rule>
+          </validation>
+        </editor>
+      </settings>
+    </column>
+    <column name="badge_descriptions" sortOrder="4">
+      <settings>
+        <filter>text</filter>
+        <label translate="true">Badge Description</label>
+        <editor>
+          <editorType>readonly</editorType>
+          <validation>
+            <rule name="required-entry" xsi:type="boolean">false</rule>
+          </validation>
+        </editor>
+      </settings>
+    </column>
+    <column name="ranks" sortOrder="5">
+      <settings>
+        <filter>text</filter>
+        <label translate="true">Rank</label>
+        <editor>
+          <editorType>readonly</editorType>
+          <validation>
+            <rule name="required-entry" xsi:type="boolean">false</rule>
+          </validation>
+        </editor>
+      </settings>
+    </column>
+    <column name="created" sortOrder="6">
+      <settings>
+        <filter>text</filter>
+        <label translate="true">Created</label>
+        <editor>
+          <editorType>readonly</editorType>
+          <validation>
+            <rule name="required-entry" xsi:type="boolean">false</rule>
+          </validation>
+        </editor>
+      </settings>
+    </column>
+    <column name="seller_status" sortOrder="7">
+      <settings>
+        <filter>text</filter>
+        <label translate="true">Status</label>
+        <editor>
+          <editorType>text</editorType>
+          <validation>
+            <rule name="required-entry" xsi:type="boolean">false</rule>
+          </validation>
+        </editor>
+      </settings>
+    </column>
+    <actionsColumn name="actions" class="Dotsquares\Sellerbadge\Ui\Component\Listing\Grid\Column\Actions">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="resizeEnabled" xsi:type="boolean">false</item>
+          <item name="resizeDefaultWidth" xsi:type="string">200</item>
+          <item name="indexField" xsi:type="string">badge_id</item>
+          <item name="sortOrder" xsi:type="number">1800</item>
+        </item>
+      </argument>
+    </actionsColumn>
+  </columns>
+</listing>

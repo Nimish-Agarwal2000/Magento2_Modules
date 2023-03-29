@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+
+ *
+ * @category    Dotsquares
+ * @package     Dotsquares_favouriteseller
+ * @version     1.0.0
+
+ *
+ */
+! -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+         <add id="Dotsquares_Sellerbadge::manage_badge" title="Manage Badges" dependsOnConfig="marketplace/seller_badge/enable_badge" module="Dotsquares_Sellerbadge" sortOrder="9" parent="Dotsquares_Marketplace::main_menu" action="seller/index/index" resource="Dotsquares_Sellerbadge::manage_badge" /> 
+         <add id="Dotsquares_Sellerbadge::manage_badges" title="Manage Seller Badges" dependsOnConfig="marketplace/seller_badge/enable_badge" module="Dotsquares_Sellerbadge" sortOrder="10" parent="Dotsquares_Marketplace::main_menu" action="seller/seller/index" resource="Dotsquares_Sellerbadge::manage_badges" /> 
+ </menu>
+</config>

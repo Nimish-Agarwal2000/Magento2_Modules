@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">badges_form.dotsquares_sellerbadge_post_listing_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Dotsquares\Sellerbadge\Block\Adminhtml\Index\Edit\Button\Back"/>
+			<button name="delete" class="Dotsquares\Sellerbadge\Block\Adminhtml\Index\Edit\Button\Delete"/>
+			<button name="save" class="Dotsquares\Sellerbadge\Block\Adminhtml\Index\Edit\Button\Save"/>
+		</buttons>
+		<namespace>badges_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>badges_form.dotsquares_sellerbadge_post_listing_data_source</dep>
+		</deps>
+	</settings>
+	 <dataSource name="post_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="name" xsi:type="string">dotsquares_sellerbadge_post_listing_data_source</argument>
+            <argument name="class" xsi:type="string">Dotsquares\Sellerbadge\Ui\Component\Form\DataProvider</argument>
+            <argument name="primaryFieldName" xsi:type="string">badge_id</argument>
+            <argument name="requestFieldName" xsi:type="string">badge_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/> 
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+	<field name="badge_name" formElement="input" sortOrder="1">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Post</item>
+					<item name="validation" xsi:type="array">
+					     <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Badge Name</label>
+				<dataScope>badge_name</dataScope>
+			</settings>
+		</field>
+	<field name="badge_descriptions" formElement="input" sortOrder="2">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Post</item>
+					<item name="validation" xsi:type="array">
+					     <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Badge Description</label>
+				<dataScope>badge_descriptions</dataScope>
+			</settings>
+		</field>
+	<field formElement="imageUploader" name="thumbnail" sortOrder="5">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Requestquote</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Thumbnail</label>
+				<dataType>text</dataType>
+				<dataScope>thumbnail</dataScope>
+				<elementTmpl>ui/form/element/uploader/image</elementTmpl>
+				<visible>true</visible>
+                <required>true</required>
+			</settings>
+			<formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="seller/index/uploader"/>
+                        </uploaderConfig>
+						<previewTmpl>Dotsquares_Sellerbadge/thumbnail-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>sellerbadge</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+		</field>
+	<field name="ranks" formElement="input" sortOrder="3">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Post</item>
+					<item name="validation" xsi:type="array">
+					     <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Rank</label>
+				<dataScope>ranks</dataScope>
+			</settings>
+		</field>
+	<field name="seller_status" formElement="select" sortOrder="6">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="source" xsi:type="string">homeslider</item>
+        </item>
+	</argument>	
+    <settings>
+        <dataType>text</dataType>
+        <label translate="true">Status</label>
+        <dataScope>seller_status</dataScope>
+    </settings>
+    <formElements>
+        <select>
+            <settings>
+                <options class="Dotsquares\Sellerbadge\Model\Config\Source\Approved"/>
+            </settings>
+        </select>
+    </formElements>
+</field>
+	</fieldset>
+</form>
