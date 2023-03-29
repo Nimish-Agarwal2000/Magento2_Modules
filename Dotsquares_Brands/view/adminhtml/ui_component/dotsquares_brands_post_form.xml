@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">dotsquares_brands_post_form.dotsquares_brands_post_listing_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Dotsquares\Brands\Block\Adminhtml\Index\Edit\Button\Back"/>
+			<button name="delete" class="Dotsquares\Brands\Block\Adminhtml\Index\Edit\Button\Delete"/>
+			<button name="save" class="Dotsquares\Brands\Block\Adminhtml\Index\Edit\Button\Save"/>
+		</buttons>
+		<namespace>dotsquares_brands_post_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>dotsquares_brands_post_form.dotsquares_brands_post_listing_data_source</dep>
+		</deps>
+	</settings>
+	 <dataSource name="post_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="name" xsi:type="string">dotsquares_brands_post_listing_data_source</argument>
+            <argument name="class" xsi:type="string">Dotsquares\Brands\Ui\Component\Form\DataProvider</argument>
+            <argument name="primaryFieldName" xsi:type="string">brand_id</argument>
+            <argument name="requestFieldName" xsi:type="string">brand_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+	
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="name" formElement="input" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Post</item>
+					<item name="validation" xsi:type="array">
+					     <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Brand Name</label>
+				<dataScope>name</dataScope>
+			</settings>
+		</field>
+		<field name="sort_detail" formElement="textarea" sortOrder="11">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Post</item>
+					<item name="validation" xsi:type="array">
+					     <item name="required-entry" xsi:type="boolean">true</item>
+					     <item name="max-words" xsi:type="number">25</item>
+                    </item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Sort Detail</label>
+				<dataScope>sort_detail</dataScope>
+			</settings>
+		</field>
+		<field name="full_detail" formElement="textarea" sortOrder="12">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Post</item>
+					<item name="validation" xsi:type="array">
+					     <item name="required-entry" xsi:type="boolean">true</item>
+					     <item name="max-words" xsi:type="number">150</item>
+                    </item>
+					
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Full Detail</label>
+				<dataScope>full_detail</dataScope>
+			</settings>
+		</field>
+		<field formElement="imageUploader" name="image" sortOrder="140">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Requestquote</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Image</label>
+				<dataType>text</dataType>
+				<dataScope>image</dataScope>
+				<elementTmpl>ui/form/element/uploader/image</elementTmpl>
+				<visible>true</visible>
+                <required>false</required>
+			</settings>
+			<formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="dotsquares_brands/post/uploader"/>
+                        </uploaderConfig>
+						<previewTmpl>Dotsquares_Brands/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>brands</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+		</field>
+	</fieldset>
+</form>

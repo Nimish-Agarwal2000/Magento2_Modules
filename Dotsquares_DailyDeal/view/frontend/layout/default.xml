@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">https://meet.google.com/ddx-yvpo-wwq
+   <head>
+		<css src="Dotsquares_DailyDeal::css/backend.css"/>
+	</head>
+    <body>
+        <referenceBlock name="customer_account_navigation">
+           <block class="Dotsquares\DailyDeal\Block\Seller\CustomTab" ifconfig="marketplace/dailydeal/dailydeal_enable" after="-" name="custom-tab-dailydeal" template="Dotsquares_DailyDeal::seller/customeTab.phtml">        	
+       	</block>
+        </referenceBlock>
+         <referenceBlock name="top.links">
+        	<block class="Magento\Framework\View\Element\Html\Link" ifconfig="marketplace/dailydeal/dailydeal_enable" name="dailydeal-top-link">
+            	<arguments>
+                	
+					<argument name="label" xsi:type="string">DailyDeal</argument>
+                	<argument name="path" xsi:type="string">dailydeal/product/dealcollection</argument>
+            	</arguments>
+        	</block>
+    	</referenceBlock>
+        <referenceBlock name="footer_links">
+         <block class="Magento\Framework\View\Element\Html\Link" ifconfig="marketplace/dailydeal/dailydeal_enable" name="dailydeal-footer-link">
+             <arguments>
+                 <argument name="label" xsi:type="string">DailyDeal</argument>
+                 <argument name="path" xsi:type="string">dailydeal/product/dealcollection</argument>
+             </arguments>
+         </block>
+     </referenceBlock>
+    </body>
+</page>
+         
+     
+        
+  

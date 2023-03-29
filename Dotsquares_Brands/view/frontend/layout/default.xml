@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>   
+	 <referenceContainer name="product.info.extrahint">
+        <block class="Dotsquares\Brands\Block\Frontend\Brands" ifconfig="brands/general/enable"  name="product.info.brand"
+          template="Dotsquares_Brands::sortdital.phtml"
+           after="-" cacheable="false"/>
+           
+    </referenceContainer>
+    <referenceBlock name="top.links">
+        	<block class="Magento\Framework\View\Element\Html\Link" ifconfig="brands/general/enable" name="custom-top-link">
+            	<arguments>
+                	
+					<argument name="label" xsi:type="helper" helper="Dotsquares\Brands\Helper\Data::getButtonLavel" />
+                	<argument name="path" xsi:type="string">allbrand</argument>
+            	</arguments>
+        	</block>
+    	</referenceBlock>
+		<referenceBlock name="catalog.topnav">
+		<block class="Dotsquares\Brands\Block\Frontend\Brands" ifconfig="brands/general/enable" after="-" name="custom-top-brand" template="Dotsquares_Brands::topmenu.phtml">
+            	
+        	</block>
+		</referenceBlock>
+
+		
+	 <block class="Dotsquares\Brands\Block\Frontend\Brands"  name="product.info.branded" template="Dotsquares_Brands::sortdita.phtml">
+            </block>
+		
+
+  </body>
+</page>

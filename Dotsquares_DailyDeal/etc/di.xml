@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <type name="Magento\Catalog\Model\Product">
+    <plugin name="change_product_price" type="Dotsquares\DailyDeal\Plugin\Catalog\Model\Product"  
+     sortOrder="0" 
+      disabled="false"/>
+  </type>
+ 
+    <type name="\Magento\Catalog\Pricing\Render\FinalPriceBox">
+        <plugin name="final_price_plugin" type="Dotsquares\DailyDeal\Plugin\FinalPricePlugin" sortOrder="1" disabled="false"   />
+</type>   
+   <virtualType name="ProductGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collectionDetail" xsi:type="object" shared="false">Magento\Catalog\Model\ResourceModel\Product\Collection</argument>      
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dailydeal_data_source" xsi:type="string">Magento\Catalog\Model\ResourceModel\Product\Grid\Collection</item>
+            </argument>			
+        </arguments>
+    </type>  
+  
+</config>

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:helloworld:Magento_Widget:etc/widget.xsd">
+	<widget class="Dotsquares\DailyDeal\Block\Widget\Upcomingdeal" id="upcoming_deal_posts">
+		<label>Upcoming Deal</label>
+		<description>Widgets for Daily Deal Upcoming</description>
+		<parameters>
+			<parameter name="headertitle" sort_order="1" visible="true" required="true" xsi:type="text">
+				<label>Header Title</label>
+				<description>e.g Upcoming Deal</description>
+			</parameter>
+			<parameter name="headerinfo" sort_order="2" visible="true" required="true" xsi:type="text">
+				<label>Header Title Info</label>
+				<description>e.g Upcoming Deal in Future</description>
+			</parameter>
+			<parameter name="productlimit" sort_order="3" visible="true" required="true" xsi:type="text">
+				<label>Set Product Limit</label>
+				<description>e.g 5</description>
+			</parameter>
+			<parameter name="sellerids" sort_order="4" visible="true" required="true" xsi:type="text">
+				<label>Seller Ids</label>
+				<description>add value with comma separetion e.g 11,12,15,....</description>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

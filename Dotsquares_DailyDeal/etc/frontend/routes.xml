@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+
+ *
+ * @category    Dotsquares
+ * @package     Dotsquares_DailyDeal
+ * @version     1.0.0
+
+ *
+ */
+! -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+  <router id="standard">
+    <route id="dailydeal" frontName="dailydeal">
+      <module name="Dotsquares_DailyDeal" />
+    </route>
+  </router>
+</config>

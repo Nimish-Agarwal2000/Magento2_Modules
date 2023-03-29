@@ -1,0 +1,17 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="brands" resource="default" engine="innodb" comment="Dotsquares Products Brands">
+        <column xsi:type="int" name="brand_id" unsigned="true" nullable="false" identity="true" comment="Brand_Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="brand_id"/>
+		</constraint>
+        <column xsi:type="text" name="name" nullable="false"  comment="Customer Name"/>
+        <column xsi:type="text" name="image" nullable="false"  comment="Image"/>
+        <column xsi:type="text" name="path" nullable="false"  comment="Image Path"/>
+        <column xsi:type="text" name="sort_detail" nullable="false"  comment="Sort Ditail"/>
+        <column xsi:type="text" name="full_detail" nullable="false"  comment="Ditail"/>
+        <column xsi:type="timestamp" name="added_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Date of Post"/>
+        
+    </table>
+</schema>

@@ -1,0 +1,486 @@
+<?php
+if($block->getBrandEnable()){
+   if ($block->getBrandCollection()) {
+?>
+<style>
+    .btn {
+        margin: 0 3px 3px 0;
+        padding: 6px 11px;
+        background-color: white;
+        cursor: pointer;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .active,
+    .btn:hover {
+        border-color: #006bb4;
+        background: #dff1ff;
+        color: #006bb4;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .titel {
+        display: flex;
+        align-items: center;
+        margin: 0 0 20px;
+        color: #333;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 32px;
+        line-height: 1;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+
+    .brand-content {
+        margin: 0 -10px;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        list-style-type: disc;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+        display: flex;
+    }
+
+    .brand-item {
+        width: 122px;
+        min-height: 130px;
+        margin: 0 10px 20px;
+        list-style-type: none;
+        text-align: center;
+        position: relative;
+        min-width: 100px;
+        display: list-item;
+    }
+
+    .brand-inner {
+        cursor: pointer;
+        list-style-type: none;
+        text-align: center;
+    }
+
+    .brand-content {
+        display: flex;
+        flex-wrap: wrap;
+        /* margin: 0 -8px; */
+        margin: 0 -10px;
+        padding: 0;
+        list-style-type: disc;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+    }
+
+    .brand-item {
+        width: 122px;
+        min-height: 130px;
+        margin: 0 10px 20px;
+        list-style-type: none;
+        text-align: center;
+        position: relative;
+        margin: 0 8px 16px;
+        min-width: 100px;
+        display: list-item;
+    }
+
+    .ambrands-letter {
+        width: 33%;
+        padding-right: 30px;
+        box-sizing: border-box;
+        margin-bottom: 40px;
+        /* width: 100%; */
+        vertical-align: top;
+    }
+
+    li.brand-item.itemm {
+        position: relative;
+    }
+
+    .itemmm2 {
+        position: absolute;
+        left: 110%;
+        border: 1px solid #ddd;
+        top: 0px;
+        transform: translateY(-60px);
+        width: 220px;
+        height: auto;
+        padding: 10px;
+        
+    }
+
+    .itemmm2 img {
+        height: auto !important;
+        width: 100px !important;
+        margin: auto;
+    }
+
+    .itemm:hover,
+    .itemm:focus {
+        border-color: #006bb4;
+        text-decoration: none;
+
+    }
+
+    .itemm {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow: hidden;
+        height: 100%;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgb(74 83 94 / 3%), 0 4px 10px rgb(104 118 139 / 13%);
+        color: #333;
+        transition: 1s;
+    }
+    .ambrands-image-block img{
+        height: 122px;
+    }
+</style>
+
+
+
+<div style="background:#ECF1FF;">
+    <div style="text-align:center; font-size:22px;font-weight:700;padding: 40px 10px 0;"><b> Our Brands</b></div>
+    <div class="slick-slider" style="margin:20px 40px 30px 40px;">
+        <?php
+				foreach ($block->getBrandCollection() as $item): ?>
+        <div class="item">
+            <a href='<?php echo $block-> getPathBaceUrl()."dotsquares/index/brandview"."/"."id/".$item["brand_id"];?>'>
+                <img style="width:219px; height:250px;"
+                    src='<?php echo $block-> getPathUrlMedia(). $item["path"] ."/". $item["image"]; ?>' />
+            </a>
+        </div>
+        <?php  endforeach; ?>
+    </div>
+</div>
+<?php } ?>
+<div>
+    <img src="<?php echo $block->getStarUrl();?>" alt="hello" />
+</div>
+
+
+
+
+
+
+<?php
+// get custom data
+$custom_data = $block->getBrandCollections();
+?>
+<fieldset id="brands" class="fieldset">
+    <?php
+    if (count($custom_data)) {
+        foreach($block->getBrandCollection() as $brandalphabet){
+            $itemnamea =$brandalphabet['name'];
+             
+             $itemnamea=strtoupper($itemnamea);
+             $sortnamea[]=$itemnamea[0];
+        }
+        
+        foreach ($custom_data as $item):
+             $itemname =$item['name'];
+             $brandsname[] =$item['name'];
+             $itemname=strtoupper($itemname);
+             $sortname[]=$itemname[0];
+        
+        endforeach;
+        ?>
+<div id="myDIV" style="width: 100%; margin: 20px 0 53px;">
+    <button id="all" class="button1 btn enable" value="all">All Brands</button>
+    <?php
+         $str = range('A', 'Z');
+         foreach($str as $i):       
+?>
+    <?php if (in_array($i, $sortnamea)) 
+                       {
+                 ?>
+    <button class="button1 btn enable" id="<?php echo $i; ?>" value="<?php echo $i; ?>">
+        <?php echo $i;?>
+    </button>
+    <?php 
+                 }else{?>
+    <button data-ambrands-js="popup-filter-letter"
+        style="padding: 6px 11px;margin: 0 3px 3px 0;background: #ececec;color: #333;cursor: pointer;font-size: 18px;"
+        class="disabled">
+        <?php echo $i;?>
+    </button>
+    <?php }
+         endforeach; ?>
+    </li>
+</div>
+
+<!-- custom brand start -->
+<?php
+foreach ($block->getBrandCollection() as $itemb):
+    $itemnameb =$itemb['name'];
+    $brandsnameb[] =$itemb['name'];
+    $itemnameb=strtoupper($itemnameb);
+    $sortnameb[]=$itemnameb[0];
+
+endforeach;
+$sortnameb = array_unique($sortnameb);
+sort($sortnameb);
+foreach($sortnameb as $bb){
+    $sortnamb[] = $bb;
+}
+$input = $sortnameb;
+$col = 3;
+// echo ceil(count($input) / $col);
+$row = ceil(count($input) / $col);
+$output = array();
+?>
+<div style="width: 100%;">
+    <?php
+
+while(count($input)){
+    $output[] = array_splice($input, 0, $row);
+    
+}
+for($i = 0; $i < $row; $i++) { ?>
+    <section style="display:flex; width:100%;">
+        <?php $temp = array();
+    for($j = 0; $j < $col; $j++) {
+        if (isset($output[$j][$i])) {
+            ?>
+        <div id="brand<?php echo $output[$j][$i];?>"
+            style="display:none; width:100%; padding-right: 30px; box-sizing: border-box; margin-bottom: 40px;vertical-align: top;">
+            <h3 class="titel">
+                <?php echo $output[$j][$i]; ?>
+            </h3>
+            <style>.itemm<?php echo $output[$j][$i].$output[$j][$i];?> {overflow: visible;}.itemmm<?php echo $output[$j][$i].$output[$j][$i];?> {background-color: white;display: none;position: absolute;text-align: center;max-width: 300px;max-height: 250px;top: 0;left: 140px;border: 1px solid #ddd;z-index: 99;}.itemm<?php echo $output[$j][$i].$output[$j][$i];?>:hover ..itemmm<?php echo $output[$j][$i].$output[$j][$i];?> {flex-direction: column;z-index: 9999;}.itemm<?php echo $output[$j][$i].$output[$j][$i];?>.itemmm<?php echo $output[$j][$i].$output[$j][$i];?>::before {content: "";width: 15px;height: 25px;background: #fff;position: absolute;left: -8px;bottom: 10px;border-left: 1px solid #ddd;border-bottom: 1px solid #ddd;transform: rotate(27deg);}.itemm<?php echo $output[$j][$i].$output[$j][$i];?>:hover .itemmm<?php echo $output[$j][$i].$output[$j][$i];?> { display: flex;flex-direction: column; align-items: center; justify-content: center;}</style>
+
+            <ul class="brand-content">
+                <?php
+                    foreach($block->getBrandCollection() as $item3):
+                        $brandname = $item3['name'];
+                        $brandsortname = $brandname[0];
+                        $brand = strtoupper($brandsortname);
+                        if($output[$j][$i] == $brand){ ?>
+
+
+                <li class="brand-item itemm itemm<?php echo $output[$j][$i].$output[$j][$i];?>">
+                    <a href='<?php echo $block-> getPathBaceUrl()."dotsquares/index/brandview"."/"."id/".$item3["brand_id"];?>'
+                        class="brand-inner" title="Lacoste">
+                        <span class="ambrands-image-block">
+                            <img style="width:100%;"
+                                src='<?php echo $block-> getPathUrlMedia(). $item["path"] ."/". $item3["image"]; ?>' />
+                        </span>
+                        <span class="ambrands-label">
+                            <?php echo $brandname; ?>
+                        </span>
+                    </a>
+                    <div class="itemmm2 itemmm<?php echo $output[$j][$i].$output[$j][$i]; ?>">
+
+                        <?php echo $item3["sort_detail"]; ?>
+
+
+                        <img style="width:70px; height:50px;"
+                            src='<?php echo $block-> getPathUrlMedia(). $item3["path"] ."/". $item3["image"]; ?>' />
+
+                    </div>
+                </li>
+
+                <?php   }
+                    endforeach
+                         ?>
+            </ul>
+
+        </div>
+
+        <?php
+        }
+    }
+    ?>
+    </section>
+    <?php
+}
+?>
+</div>
+
+<!-- custom brand End -->
+
+
+<!-- test start -->
+<?php
+// $sortname = array_sort($sortname);
+$sortname = array_unique($sortname);
+sort($sortname);
+foreach($sortname as $bb){
+    $sortnam[] = $bb;
+}
+// $sortname = asort($sortname);
+$input = $sortname;
+$col = 3;
+// echo ceil(count($input) / $col);
+$row = ceil(count($input) / $col);
+$output = array();
+?>
+<div style="width: 100%;"  id="brandall">
+    <?php
+
+while(count($input)){
+    $output[] = array_splice($input, 0, $row);
+    
+}
+for($i = 0; $i < $row; $i++) { ?>
+    <section style="display:flex; width:100%;">
+        <?php $temp = array();
+    for($j = 0; $j < $col; $j++) {
+        if (isset($output[$j][$i])) {
+            ?>
+        <div class="ambrands-letter letter-N">
+            <h3 class="titel">
+                <?php echo $output[$j][$i]; ?>
+            </h3>
+            <style>.itemm<?php echo $output[$j][$i]; ?> {overflow: visible;}.itemmm<?php echo $output[$j][$i];?> {background-color: white;display: none;position: absolute;text-align: center;max-width: 300px;max-height: 250px;top: 0;left: 140px;border: 1px solid #ddd;z-index: 99;}.itemm<?php echo $output[$j][$i];?>:hover ..itemmm<?php echo $output[$j][$i];?> { display: flex; flex-direction: column; align-items: center;justify-content: center;z-index: 9999;}.itemm<?php echo $output[$j][$i];?>.itemmm<?php echo $output[$j][$i];?>::before {content: "";width: 15px;height: 25px;background: #fff;position: absolute;left: -8px;bottom: 10px;border-left: 1px solid #ddd;border-bottom: 1px solid #ddd;transform: rotate(27deg);}.itemm<?php echo $output[$j][$i];?>:hover .itemmm<?php echo $output[$j][$i];?> { display: flex;flex-direction: column; align-items: center; justify-content: center;}</style>
+            <ul class="brand-content">
+                <?php
+                    foreach($custom_data as $item3):
+                        $brandname = $item3['name'];
+                        $brandsortname = $brandname[0];
+                        $brand = strtoupper($brandsortname);
+                        if($output[$j][$i] == $brand){ ?>
+
+
+                <li class="brand-item itemm itemm<?php echo $output[$j][$i]; ?>">
+                    <a href='<?php echo $block-> getPathBaceUrl()."dotsquares/index/brandview"."/"."id/".$item3["brand_id"];?>'
+                        class="brand-inner" title="<?php echo $brandname; ?>">
+                        <span class="ambrands-image-block">
+                            <img style="width:100%;"
+                                src='<?php echo $block-> getPathUrlMedia(). $item["path"] ."/". $item3["image"]; ?>' />
+                        </span>
+                        <span class="ambrands-label">
+                            <?php echo $brandname; ?>
+                        </span>
+                    </a>
+
+                    <div class="itemmm2 itemmm<?php echo $output[$j][$i]; ?>">
+
+                        <?php echo $item3["sort_detail"]; ?>
+
+
+                        <img style="width:70px; height:50px;"
+                            src='<?php echo $block-> getPathUrlMedia(). $item3["path"] ."/". $item3["image"]; ?>' />
+
+                    </div>
+                </li>
+                <?php   }
+                    endforeach
+                         ?>
+            </ul>
+
+        </div>
+
+        <?php
+        }
+    }
+    ?>
+    
+    </section>
+    <?php
+}
+?>
+<?php if ($block->getPagerHtml()): ?>
+                <div class="order-products-toolbar bottom">
+                    <?= $block->getPagerHtml() ?>
+                </div>
+        <?php endif ?>
+</div>
+
+<!-- test End -->
+
+
+
+
+
+
+        
+    <?php } else { ?>
+                <div class="message info empty">
+                    <span><?= $block->escapeHtml('Now Not Available Brand') ?></span>
+                </div>
+    <?php  } ?>
+</fieldset>
+
+<?php } 
+else{ ?>
+    <script type="text/javascript">
+        function redirectHome() {
+          window.location = "{{store url='no-route'}}";
+        }
+        setTimeout("redirectHome()", 500);
+        </script>
+   <?php
+}?>
+
+<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("btn");
+    var a1 = "brandall";
+    console.log(a1);
+
+
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+            var id = document.getElementsByClassName("active")[0].id;
+            document.getElementById("brand" + id).style.display = "block";
+            //  element.style.display = "none";
+            b1 = "brand" + id;
+            if (b1 != a1) {
+                document.getElementById(a1).style.display = "none";
+            }
+
+            a1 = "brand" + id;
+            //  document.getElementsByClassName('brand-A').ClassName += " active";
+
+            // console.log(xy);
+            // brand.document.getElementById(id)[0].className += " active";
+            // var id = document.getElementsByClassName("active")[1].id;
+        });
+    }
+</script>
+<script type="text/javascript">
+    var config = {
+        paths: {
+            slick: 'Dotsquares_Brands/js/slick'
+        },
+        shim: {
+            slick: {
+                deps: ['jquery']
+            }
+        }
+    };
+</script>
+<script type="text/javascript">
+
+    require(['jquery', 'jquery/ui', 'slick'], function ($) {
+        $(document).ready(function () {
+            $(".slick-slider").slick({
+                dots: true,
+                infinite: false,
+                slidesToShow: 5,
+                slidesToScroll: 4
+            });
+        });
+    });
+</script>

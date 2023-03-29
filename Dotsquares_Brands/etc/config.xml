@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <brands>
+            <general>
+
+                <attribute>Brand</attribute>
+                <url_key>all-brands</url_key>
+                <brands_item_label>Brands</brands_item_label>
+                <tooltip_content>{short_description}{image}</tooltip_content>
+                <popup_configuration>
+                    <logo_width>100</logo_width>
+                    <logo_height>100</logo_height>
+                </popup_configuration>
+            </general>
+            <more_from_this_brand>
+                <title>More from {brand_name}</title>
+                <max_product>7</max_product>
+            </more_from_this_brand>
+            <product_page_brand_settings>
+                <brand_logo_width>70</brand_logo_width>
+                <brand_logo_height>70</brand_logo_height>
+            </product_page_brand_settings>
+            <product_listing_brand_settings>
+                <brand_logo_width_on_product_listing>30</brand_logo_width_on_product_listing>
+                <brand_logo_height_on_product_listing>30</brand_logo_height_on_product_listing>
+            </product_listing_brand_settings>
+        </brands>
+
+    </default>
+</config>

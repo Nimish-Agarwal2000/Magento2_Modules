@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>        
+        <referenceContainer name="content">
+            <block name="daily_deal_collection" ifconfig="marketplace/dailydeal/dailydeal_enable"  class="Dotsquares\DailyDeal\Block\Product\Dealpage" template="Dotsquares_DailyDeal::dealcollection.phtml" >       
+           </block>
+           <block class="Dotsquares\DailyDeal\Block\Product\TopDeal" name="top.deal" as="top.deal" template="Dotsquares_DailyDeal::top_deal.phtml" />
+        </referenceContainer>  
+        <move element="top.deal" destination="sidebar.main" before="-"/>
+        <referenceBlock name="seller_account" remove="true" />
+		<referenceBlock name="customer_account_navigation"
+			remove="true" />      
+    </body>
+</page>

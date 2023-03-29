@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+
+ *
+ * @category    Dotsquares
+ * @package     Dotsquares_DailyDeal
+ * @version     1.0.0
+
+ *
+ */
+! -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+  <system>
+    <tab id="dotsquares" translate="label" sortOrder="1">
+      <label>DailyDeal</label>
+    </tab>
+    <section id="marketplace" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Settings</label>
+      <tab>dotsquares</tab>
+      <resource>Dotsquares_Marketplace::system_config</resource>
+    <group id="dailydeal" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>DailyDeal</label>
+        <field id="dailydeal_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>DailyDeal enable</label>
+          <comment>Enable FDailyDeal module</comment>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+      </group>
+       
+    </section>
+   
+  </system>
+</config>

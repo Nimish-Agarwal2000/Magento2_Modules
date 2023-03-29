@@ -1,0 +1,215 @@
+
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\Action\Action;
+if($block->getBrandEnable()){
+/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundHelper
+$brand = $block->getBrands();
+?>
+<div><p><?php echo $brand['full_detail'];?></p></div>
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
+    <?php
+    $type = 'widget-product-grid';
+
+    $mode = 'grid';
+
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $description = false;
+    ?>
+    
+    <div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
+        <?php if ($block->getproduct()->getTitle()): ?>
+            <div class="block-title">
+                <strong><?= $block->getproduct()->escapeHtml(__($block->getproduct()->getTitle())) ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
+            <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
+                <ol class="product-items <?= /* @noEscape */ $type ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item): ?>
+                        <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+                        <div class="product-item-info">
+                            <a href="<?= $block->getproduct()->escapeUrl($block->getproduct()->getProductUrl($_item)) ?>" class="product-item-photo">
+                                <?= $block->getproduct()->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->getproduct()->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->getproduct()->escapeUrl($block->getproduct()->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+                                        <?= $block->getproduct()->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                               
+                                <?php if ($templateType): ?>
+                                    <?= $block->getproduct()->getReviewsSummaryHtml($_item, $templateType) ?>
+                                <?php endif; ?>
+
+                                <?= $block->getproduct()->getProductPriceHtml($_item, $type) ?>
+                              
+                                <?= $block->getproduct()->getProductDetailsHtml($_item) ?>
+
+                               <div>
+                                <?php 
+                                if($block->getPLPBLogo()){
+                                $width=30;
+                                $height=30;
+                                
+                                
+                                
+                                
+                                ?>
+                                
+                                <div class="itemm"><a
+                                        href='<?php echo $block-> getPathBaceUrl()."dotsquares/index/brandview"."?"."id=".$brand["brand_id"];?>'>
+                                        <img class="img" style="width:<?php if($block->getPPBLogoWidth()){ echo $block->getPPBLogoWidth();} else{ echo $width; } ?>px; height:<?php if($block->getPPBLogoHeight()){ echo $block->getPPBLogoHeight();} else{ echo $height; } ?>px;"
+                                            src='<?php echo $block-> getPathUrlMedia(). $brand["path"] ."/". $brand["image"]; ?>' /></a>
+                                    <?php if($block->getPPBSDescription()){ ?>
+                                    <div class="itemmm">
+                                        <div class="content">
+                                        <p>
+                                            <?php echo $brand["sort_detail"]; ?>
+                                        </p>
+                                
+                                        <img style="width:70px; height:50px;"
+                                            src='<?php echo $block-> getPathUrlMedia(). $brand["path"] ."/". $brand["image"]; ?>' />
+                                
+                                    </div>
+                                </div>
+                                    <?php } ?>
+                                </div>
+                                <?php } ?>
+                               
+                               </div>
+                                <?php if ($showWishlist || $showCompare || $showCart): ?>
+                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                            <?php if ($showCart): ?>
+                                                <div class="actions-primary">
+                                                    <?php if ($_item->isSaleable()): ?>
+                                                        <?php $postParams = $block->getproduct()->getAddToCartPostParams($_item); ?>
+                                                        <form data-role="tocart-form" data-product-sku="<?= $block->getproduct()->escapeHtml($_item->getSku()) ?>" action="<?= $block->getproduct()->escapeUrl($postParams['action']) ?>" method="post">
+                                                            <input type="hidden" name="product" value="<?= $block->getproduct()->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                                            <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                            <?= $block->getproduct()->getBlockHtml('formkey') ?>
+                                                            <button type="submit"
+                                                                    title="<?= $block->getproduct()->escapeHtml(__('Add to Cart')) ?>"
+                                                                    class="action tocart primary">
+                                                                <span><?= $block->getproduct()->escapeHtml(__('Add to Cart')) ?></span>
+                                                            </button>
+                                                        </form>
+                                                    <?php else: ?>
+                                                        <?php if ($_item->isAvailable()): ?>
+                                                            <div class="stock available"><span><?= $block->getproduct()->escapeHtml(__('In stock')) ?></span></div>
+                                                        <?php else: ?>
+                                                            <div class="stock unavailable"><span><?= $block->getproduct()->escapeHtml(__('Out of stock')) ?></span></div>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if ($showWishlist || $showCompare): ?>
+                                                <div class="actions-secondary" data-role="add-to-links">
+                                                    <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist): ?>
+                                                        <a href="#"
+                                                           data-post='<?= /* @noEscape */ $block->getproduct()->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->getproduct()->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                                            <span><?= $block->getproduct()->escapeHtml(__('Add to Wish List')) ?></span>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($block->getproduct()->getAddToCompareUrl() && $showCompare): ?>
+                                                        <?php $compareHelper = $this->helper(\Magento\Catalog\Helper\Product\Compare::class);?>
+                                                        <a href="#" class="action tocompare" data-post='<?= /* @noEscape */ $compareHelper->getPostDataParams($_item) ?>' title="<?= $block->getproduct()->escapeHtmlAttr(__('Add to Compare')) ?>">
+                                                            <span><?= $block->getproduct()->escapeHtml(__('Add to Compare')) ?></span>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+            
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+    <div>
+        
+    </div>
+    
+    <?php if($block->getBlockHtml('formkey')): ?>
+    <script type="text/x-magento-init">
+    {
+        ".block.widget [data-role=tocart-form]": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+    </script>
+    <?php endif;?>
+
+<?php
+else: ?>
+<div style="padding:unset;">No product Found</div>
+<?php
+endif;
+}
+
+else{ ?>
+    <script type="text/javascript">
+        function redirectHome() {
+          window.location = "{{store url='no-route'}}";
+        }
+        setTimeout("redirectHome()", 500);
+        </script>
+   <?php
+}?>
+<style>
+    .itemm {
+        position: relative;
+        
+    }
+
+    .itemmm {
+        position: absolute;
+        left: 110%;
+        border: 1px solid #ddd;
+        top: 0px;
+        transform: translateY(-60px);
+        width: 150px;
+        height: auto;
+        padding: 10px;display: none;
+
+
+    }
+   
+    .product-item-details .itemm {
+    display: inline-block;
+}
+    .product-item-details .itemm:hover 
+ .itemmm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background-color: #fff;
+}
+</style>
+

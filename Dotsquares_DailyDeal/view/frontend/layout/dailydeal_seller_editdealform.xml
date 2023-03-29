@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * Dotsquares
+ * NOTICE OF LICENSE
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.dotsquares.com/LICENSE.txt
+ * ==============================================================
+ * MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Dotsquares does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Dotsquares does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ * 
+ * @category Dotsquares
+ * @package Dotsquares_Marketplace
+ * @version 1.0
+ * @author Dotsquares Team <developers@contus.in>
+ * @copyright Copyright (c) 2017 Dotsquares. (http://www.dotsquares.com)
+ * @license http://www.dotsquares.com/LICENSE.txt
+ */ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+	xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Dotsquares_Marketplace::css/style.css" />
+        	<script src="Dotsquares_Marketplace::js/configurable.js" />
+           	<script src="Dotsquares_Marketplace::js/downloadable.js" />
+    </head>
+	<update handle="customer_account" />
+	<body>
+		<referenceContainer name="content">
+			<block class="Dotsquares\DailyDeal\Block\Seller\EditDealForm" ifconfig="marketplace/dailydeal/dailydeal_enable"  name="dailydeal_product_edit" template="Dotsquares_DailyDeal::seller/edit_deal_form.phtml" before="-">
+            </block>
+		</referenceContainer>
+	</body>
+</page>

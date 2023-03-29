@@ -1,0 +1,123 @@
+<?php
+$productId = $this->getRequest ()->getParam ( 'product_id' );
+$discount_type = $deal_status = $deal_to = $sku = $price = $specialPriceFromDate = $description = $weight = $metakeyword = $metaDescription = $qty = $baseImage = $status = $specialPrice = $deal_from = $specialPriceToDate = $type = $typeId = '';
+$nationalShippingAmount = $internationalShippingAmount = '';
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); // Instance of Pricing Helper
+
+
+$isInStock = 1;
+$productCategoryIds = $mediaGallery = array ();
+if (! empty ( $productId )) {
+    $productData = $block->getProductData ( $productId );
+    $deal_status = $productData->getDailyDeal();
+    $deal_tos = $productData->getDealTo();
+    $deal_to = $block->getTimeAccordingToTimeZone($deal_tos);
+    $deal_froms = $productData->getDealFrom();
+    $deal_from = $block->getTimeAccordingToTimeZone($deal_froms);
+    
+    $price= $productData->getPrice();
+    $price = $priceHelper->currency($price, true, false);
+    $deal_value = $productData->getDealValue();
+    $discount_type = $productData->getDiscountType();
+    
+}
+    ?>
+
+<form class="form product form-product" action="<?php echo $block->getPostActionUrl() ?>" method="post"
+    >
+    <input type="hidden" id="current_product_id" value="<?php echo $productId; ?>" name="product_id" />
+    <fieldset class="fieldset create info">
+        <legend class="legend">
+            <span><?php echo __('Deal Edit') ?></span>
+        </legend>
+        <br>
+        <div class="field required">
+        <input type="hidden" value="<?php echo $this->getRequest ()->getParam ( 'config' ) == '1'?$this->getRequest ()->getParam ( 'config' ):""?>"  name="config" />
+            <div
+                <?php if(!empty($productId)){ echo 'style="display:none;"'; } ?>>
+                <label for="name" class="label label-attribute"><span><?php echo __('Attribute Set'); ?></span></label>
+                <div class="control control-attribute">
+                <?php if (! empty ( $productId ) && $typeId == 'configurable') {?>
+                <input type="hidden" value="<?php echo $productData->getAttributeSetId(); ?>"  name="set" />
+                <?php } ?>
+                <select id="attribute_set" <?php if(!empty($productId)){ echo 'disabled'; } ?>  name="set" 
+                        title="<?php echo __('Attribute Set') ?>" class="validate-select" data-validate="{required:true}">
+                        <option  value="<?php echo $block->getDefaultAttributeSetId(); ?>"><?php echo __('Default'); ?></option>
+                    <?php
+                    $attributeSet = $block->getAttributeSet ();
+                    foreach ( $attributeSet as $set ) {
+                        if ($set ['label'] != 'Default') {
+                      ?>
+                    <option value="<?php echo $set['value']; ?>"><?php echo $set['label']; ?></option>
+                    <?php }
+                    }
+                    ?>
+                </select>
+          </div>
+<?php if($typeId == 'configurable'){ ?>
+<input type="hidden" value="<?php echo $typeId; ?>" name="type" />
+<?php } ?>
+              
+            </div>
+<?php
+/**
+ * Get categories
+ */
+$categories = $block->getStoreCategories ( true, false, true );
+?>
+            <label for="daily_deal" class="label"><span><?php echo __('Deal status') ?></span></label>
+            <select id="daily_deal" name="daily_deal"
+            title="<?php echo __('Enable Product') ?>"
+            class="validate-select">
+            <option value="1" <?php if($deal_status == 1){ echo 'selected="selected"'; } ?>><?php echo __('Enable'); ?></option>
+            <option value="2"<?php if($deal_status == 2){ echo 'selected="selected"'; } ?>><?php echo __('Disable'); ?></option>
+        </select>
+        <label for="discount_type" class="label"><span><?php echo __('Discount Type') ?></span></label>
+            <select id="discount_type" name="discount_type"
+            title="<?php echo __('Enable Product') ?>"
+            class="validate-select">
+            <option value="percentage" <?php if($discount_type == 'percentage'){ echo 'selected="selected"'; } ?>><?php echo __('Percentage'); ?></option>
+            <option value="fixed" <?php if($discount_type == 'fixed'){ echo 'selected="selected"'; } ?>><?php echo __('Fixed'); ?></option>
+        </select>
+        <label class="label" for="deal_from"><span><?php echo __('Deal From') ?>:</span></label>
+        <div class="control">
+            <input class="input-text required" type="datetime-local" 
+                id="deal_from"  name="deal_from"  value="<?php echo $deal_from;?>" required/>
+        </div>
+        <label class="label" for="deal_to"><span><?php echo __('Deal To') ?>:</span></label>
+        <div class="control">
+            <input class="input-text required" type="datetime-local" required
+                id="deal_to"  name="deal_to"  value="<?php echo $deal_to;?>" />
+        </div>
+        <label class="label" for="deal_to"><span><?php echo __('Price') ?>:</span></label>
+        <div class="control">
+            <input class="input-text required" type="text" readonly
+                id="deal_value"  name="deal_value"  value="<?php echo $price;?>" />
+        </div>
+         <label class="label" for="deal_to"><span><?php echo __('Deal Value') ?>:</span></label>
+        <div class="control">
+            <input class="input-text required" type="number" required
+                id="deal_value"  name="deal_value"  value="<?php echo $deal_value;?>" />
+        </div>
+       
+            <div class="control">
+                <input type="hidden" name="sku" id="sku" value="<?php echo $sku; ?>" required
+                    title="<?php echo __('SKU') ?>" class="input-text"  data-validate="{required:true}">
+                    <input   type="hidden" id="currentsku"  value="<?php echo $sku;?>" />
+              
+
+
+        </div>
+    </div>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input id="btn_save_product" type="submit"
+                class="action submit primary"
+                title="<?php echo __('Save') ?>"
+                value="<?php echo __('Save') ?>" />
+            
+        </div>
+    </div>
+   
+</form>

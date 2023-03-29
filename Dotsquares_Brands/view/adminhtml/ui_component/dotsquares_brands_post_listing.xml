@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+  <argument name="data" xsi:type="array">
+     <item name="js_config" xsi:type="array">
+        <item name="provider" xsi:type="string">dotsquares_brands_post_listing.dotsquares_brands_post_listing_data_source</item>
+        <item name="deps" xsi:type="string">dotsquares_brands_post_listing.dotsquares_brands_post_listing_data_source</item>
+     </item>
+     <item name="spinner" xsi:type="string">dev_grid_category_columns</item>
+     <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Brand</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/addrow</item>
+            </item>
+        </item>
+  </argument>
+  <dataSource name="dotsquares_brands_post_listing_data_source">
+   <argument name="dataProvider" xsi:type="configurableObject">
+       <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+       <argument name="name" xsi:type="string">dotsquares_brands_post_listing_data_source</argument>
+       <argument name="primaryFieldName" xsi:type="string">brand_id</argument>
+       <argument name="requestFieldName" xsi:type="string">brand_id</argument>
+       <argument name="data" xsi:type="array">
+         <item name="config" xsi:type="array">
+           <item name="update_url" xsi:type="url" path="mui/index/render"/>
+           <item name="storageConfig" xsi:type="array">
+             <item name="indexField" xsi:type="string">brand_id</item>
+           </item>
+         </item>
+       </argument>
+   </argument>
+   <argument name="data" xsi:type="array">
+     <item name="js_config" xsi:type="array">
+        <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+     </item>
+   </argument>
+  </dataSource>
+  <listingToolbar name="listing_top">
+    <bookmark name="bookmarks"/>
+    <columnsControls name="columns_controls"/>
+    <massaction name="listing_massaction">
+      <argument name="data" xsi:type="array">
+        <item name="data" xsi:type="array">
+           <item name="selectProvider" xsi:type="string">dotsquares_brands_post_listing.dotsquares_brands_post_listing.dev_grid_category_columns.ids</item>
+           <item name="displayArea" xsi:type="string">bottom</item>
+           <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+           <item name="indexField" xsi:type="string">brand_id</item>
+        </item>
+      </argument>
+      <action name="delete">
+         <argument name="data" xsi:type="array">
+           <item name="config" xsi:type="array">
+               <item name="type" xsi:type="string">delete</item>
+               <item name="label" xsi:type="string" translate="true">Delete</item>
+               <item name="url" xsi:type="url" path="dotsquares_brands/index/massDelete"/>
+               <item name="confirm" xsi:type="array">
+                  <item name="title" xsi:type="string" translate="true">Delete items</item>
+                  <item name="message" xsi:type="string" translate="true">Are you sure you want to delete selected items?</item>
+               </item>
+           </item>
+         </argument>
+      </action>
+    </massaction>
+    <filterSearch name="fulltext">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="provider" xsi:type="string">dotsquares_brands_post_listing.dotsquares_brands_post_listing_data_source</item>
+               <item name="chipsProvider" xsi:type="string">dotsquares_brands_post_listing.dotsquares_brands_post_listing.listing_top.listing_filters_chips</item>
+               <item name="storageConfig" xsi:type="array">
+                  <item name="provider" xsi:type="string">dotsquares_brands_post_listing.dotsquares_brands_post_listing.listing_top.bookmarks</item>
+                  <item name="namespace" xsi:type="string">current.search</item>
+               </item>
+            </item>
+         </argument>
+      </filterSearch>
+    <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+    </filters>
+    <paging name="listing_paging"/>
+  </listingToolbar>
+  <columns name="dev_grid_category_columns">
+    <selectionsColumn name="ids">
+       <argument name="data" xsi:type="array">
+           <item name="config" xsi:type="array">
+              <item name="indexField" xsi:type="string">brand_id</item>
+           </item>
+       </argument>
+    </selectionsColumn>
+        <column name="brand_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="sortOrder" xsi:type="number">2</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="sort_detail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="sortOrder" xsi:type="number">3</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Sort Detail</item>
+                </item>
+            </argument>
+        </column>
+         <column name="full_detail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="sortOrder" xsi:type="number">4</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Detail</item>
+                </item>
+            </argument>
+        </column>
+        <column name="image" sortOrder="5">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <sortable>true</sortable>
+                <label translate="true">Image</label>
+            </settings>
+        </column>
+        <column name="path" sortOrder="6" component="Magento_Ui/js/grid/columns/thumbnail" class="Dotsquares\Brands\Ui\Component\Listing\Grid\Column\Thumbnail">
+          <settings>
+              <hasPreview>0</hasPreview>
+              <addField>false</addField>
+              <label translate="true">Thumbnail</label>
+              <sortable>true</sortable>
+          </settings>
+        </column>
+        
+      <actionsColumn name="actions" class="Dotsquares\Brands\Ui\Component\Listing\Grid\Column\Action">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="resizeEnabled" xsi:type="boolean">false</item>
+                   <item name="resizeDefaultWidth" xsi:type="string">200</item>
+                   <item name="indexField" xsi:type="string">brand_id</item>
+                   <item name="sortOrder" xsi:type="number">1800</item>
+               </item>
+           </argument>
+       </actionsColumn>
+       
+    </columns>
+</listing>

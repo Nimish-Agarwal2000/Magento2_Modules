@@ -1,0 +1,27 @@
+<style>
+    .mp-daily-deal ul.nav {
+    display: none;
+    top: 0;
+    position: absolute;
+    background-color: #f5f5f5;
+    margin-left: 35%;
+    border: 1px solid #ccc;
+}
+.mp-daily-deal:hover ul.nav{
+    display: block;
+}
+</style>
+<?php
+    $dealonproduct = $block->getUrl("dailydeal/seller/dealonproduct");
+    $dealproductlist = $block->getUrl("dailydeal/seller/dealproductlist");
+?>
+<li class="mp-daily-deal nav item " style="position: relative;"> <a href="#">Daily Deal</a>
+    <ul class="nav items">
+        <li class="nav item "> <a
+                href="<?php echo $dealonproduct; ?>">Add
+                Deal On Product</a> </li>
+        <li class="nav item "> <a
+                href="<?php echo $dealproductlist; ?>">Deal
+                Product List</a> </li>
+    </ul>
+</li>

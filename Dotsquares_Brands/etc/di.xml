@@ -1,0 +1,52 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Dotsquares\Brands\Api\Data\GridInterface" type="Dotsquares\Brands\Model\Post" />
+    <virtualType name="Dotsquares\Brands\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">brands</argument>
+            <argument name="resourceModel" xsi:type="string">Dotsquares\Brands\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+    <!-- Image Uploader -->
+<virtualType name="VirtualTypeName" type="Magento\Catalog\Model\ImageUploader">
+<arguments>
+<argument name="baseTmpPath" xsi:type="string">logo/image</argument>
+<argument name="basePath" xsi:type="string">logo/image</argument>
+<argument name="allowedExtensions" xsi:type="array">
+<item name="jpg" xsi:type="string">jpg</item>
+<item name="jpeg" xsi:type="string">jpeg</item>
+<item name="gif" xsi:type="string">gif</item>
+<item name="png" xsi:type="string">png</item>
+</argument>
+</arguments>
+</virtualType>
+<!-- <type name="MD\Helloworld\Controller\Adminhtml\Index\Uploader">
+<arguments>
+<argument name="imageUploader" xsi:type="object">VirtualTypeName</argument>
+</arguments>
+</type> -->
+<!-- End Image Uploader -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dotsquares_brands_post_listing_data_source" xsi:type="string">Dotsquares\Brands\Model\ResourceModel\Post\Grid\Collection</item>
+            </argument>
+            <!-- <argument name="filterPool" xsi:type="object" shared="false">MDUiExampleBlogFilterPool</argument> -->
+        </arguments>
+    </type>
+    
+<type name="Magento\Framework\App\RouterList">
+<arguments>
+<argument name="routerList" xsi:type="array">
+<item name="megnorshopbybrand" xsi:type="array">
+<item name="class" xsi:type="string">Dotsquares\Brands\Controller\Router</item>
+<item name="disable" xsi:type="boolean">false</item>
+<item name="sortOrder" xsi:type="string">10</item>
+</item>
+</argument>
+</arguments>
+</type>
+    
+    
+</config>
+
+

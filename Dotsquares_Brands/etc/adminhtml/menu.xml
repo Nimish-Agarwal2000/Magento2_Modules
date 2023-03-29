@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Brandss Menu
+ *
+ 
+ * @package     Dotsquares_Brands
+ * @author      Dotsquares Private Limited
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+         <add id="Dotsquares_Brands::manager" title="Dotsquares" module="Dotsquares_Brands" sortOrder="10" resource="Dotsquares_Brands::helloword"/>
+        <add id="Dotsquares_Brands::add_row" title="Brands" module="Dotsquares_Brands" sortOrder="1" parent="Dotsquares_Brands::manager" action="dotsquares_brands/post/index"  resource="Dotsquares_Brands::add_row"/>
+     </menu>
+</config>

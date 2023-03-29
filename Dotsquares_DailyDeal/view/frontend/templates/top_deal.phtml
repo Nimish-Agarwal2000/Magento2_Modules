@@ -1,0 +1,69 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); // Instance of Pricing Helper
+
+$type = 'widget-product-grid';
+$image = 'new_products_content_widget_grid';
+    $itemss = $block->getProductCollection()->getItems();
+ foreach ($itemss as $_item){
+?><div>
+    <h3>Top Deal Of The Day</h3>
+    <div style="display: flex;">
+<div style ="width:40px">
+<a href="<?= $block->getproduct()->escapeUrl($block->getproduct()->getProductUrl($_item)) ?>" class="product-item-photo">
+    <?= $block->getproduct()->getImage($_item, $image)->toHtml() ?>
+</a>
+</div>
+<div>
+    <div>
+        <?= $block->getproduct()->escapeHtml($_item->getName()) ?>
+
+    </div>
+    <div>
+
+        <?= $block->getproduct()->getProductPriceHtml($_item, $type) ?>
+    </div>
+</div>
+</div>
+<?php if($_item->getDiscountType()=="percentage"){ ?> 
+    <div style="display: flex;"> <button style="width: auto;
+     padding: revert;
+     color: #fcfcfc;
+     background-color: #3baa3b;"> <?php echo 100-$_item->getDealValue(); ?> % off</button>
+     <p> Save on Deal 
+          <?php $price =  (int)$_item->getPrice();
+          $prices = $price/100*$_item->getDealValue();
+          $prices = $price - $prices;
+          $prices = $priceHelper->currency(round($prices), true, false);
+          
+          echo $prices;
+           ?>
+        
+     
+     </p>
+    </div>
+     <?php }else{
+         $price =  (int)$_item->getPrice();
+         $percenet = $_item->getDealValue()/$price*100;
+         $prices = $price - $_item->getDealValue();
+         $prices = $priceHelper->currency(round($prices), true, false);
+         
+         ?>
+         <div style="display: flex;">
+             <button style="width: auto;
+             padding: revert;
+             color: #fcfcfc;
+             background-color: #3baa3b;"><?php echo 100-round($percenet); ?> % off</button>
+         <p>
+               Save on Deal <?php
+             echo $prices;
+             ?>
+         </p>
+         </div>
+         <?php
+         
+     } ?>
+</div>
+<?php
+}
+?>
